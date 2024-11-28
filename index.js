@@ -3,11 +3,13 @@ const express = require("express");
 
 const { connectToMongoDB } = require("./connect");
 const { checkForAuthenticUser, redirectTo } = require("./middlewares/auth");
-
+const cors = require("cors");
 const userRoute = require("./routes/user");
 const adminRoute = require("./routes/admin");
 
 const app = express();
+
+app.use(cors());
 
 connectToMongoDB(process.env.MONGODB).then(() =>
     console.log("Mongodb connected")
